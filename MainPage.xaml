@@ -1,82 +1,218 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ShareExpenseMaui.MainPage">
+             x:Class="ShareExpenseMaui.MainPage"
+             BackgroundColor="{StaticResource CorDaPagina}"
+             Title="Share Expense">
+
+    <ContentPage.Resources>
+        <Color x:Key="CorDaPagina">White</Color>
+        <Color x:Key="CorPrimaria">BlueViolet</Color>
+        <Color x:Key="Texto">Black</Color>
+        <Color x:Key="TextoContraste">WhiteSmoke</Color>
+    </ContentPage.Resources>
 
     <ScrollView>
         <Grid RowDefinitions=".3*,.7*" Margin="15">
 
-            <Grid RowDefinitions=".1*, .9*" ColumnDefinitions="*,*">
+            <Grid Grid.Row="0" RowDefinitions=".1*, .9*" ColumnDefinitions="*,*">
+
                 <Label
                     Text="Total por pessoa"
                     Grid.ColumnSpan="2"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
                     Grid.Row="0"/>
 
                 <Label
-                    Text="R$ 0.00"
-                    FontSize="Large"
-                    TextColor="BlueViolet"
+                    Text="R$ 150.00"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="{StaticResource CorPrimaria}"
                     Grid.Column="0"
                     Grid.Row="1"/>
 
                 <VerticalStackLayout
                     Grid.Row="1"
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
 
-                    <Label/>
-                    <Label/>
-                    <Label/>
-                    <Label/>
+                    <Label
+                        FontSize="Medium"
+                        Text="SUBTOTAL"/>
+
+                    <Label 
+                        x:Name="LblSubtotal"
+                        Text="R$ 0.00"
+                        FontSize="Medium"
+                        TextColor="{StaticResource CorPrimaria}"
+                        FontAttributes="Bold"/>
+
+                    <Label
+                        Text="GORJETA"
+                        FontSize="Medium"/>
+
+                    <Label 
+                        x:Name="LblGorjetaPessoa"
+                        Text="R$ 0.00" 
+                        FontSize="Medium"
+                        TextColor="{StaticResource CorPrimaria}"
+                        FontAttributes="Bold"/>
 
                 </VerticalStackLayout>
             </Grid>
 
-            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions=".3*, .7*">
+            <Grid
+                Grid.Row="1" 
+                RowDefinitions="*,*,*,*,*" 
+                ColumnDefinitions=".3*, .7*"
+                Padding="10">
 
                 <Label
+                    Text="Conta: R$"
                     Grid.Row="0"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    VerticalOptions="Center"
+                    TextColor="{StaticResource Texto}"
                     Grid.Column="0"/>
 
                 <Entry
+                    x:Name="TxtConta"
+                    HorizontalTextAlignment="End"
                     Grid.Row="0"
-                    Grid.Column="1"/>
+                    VerticalOptions="Center"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    FontFamily="RobotBold"
+                    Keyboard="Numeric"
+                    TextColor="{StaticResource CorPrimaria}"
+                    Grid.Column="1"
+                    Completed="TxtConta_Completed"/>
 
                 <Label
+                    Text="Gorjeta Percentual:"
                     Grid.Row="1"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
                     Grid.Column="0"/>
 
                 <HorizontalStackLayout
                     Grid.Row="1"
-                    Grid.Column="1">
-                    <Button/>
-                    <Button/>
-                    <Button/>
+                    Grid.Column="1"
+                    HeightRequest="70"
+                    HorizontalOptions="CenterAndExpand"
+                    Spacing="10">
+                    
+                    <Button
+                        Clicked="Button_Clicked"
+                        Text="10%"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextoContraste}"
+                        WidthRequest="70"
+                        BackgroundColor="{StaticResource CorPrimaria}"/>
+                    
+                    <Button
+                        Clicked="Button_Clicked"
+                        Text="15%"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextoContraste}"
+                        WidthRequest="70"
+                        BackgroundColor="{StaticResource CorPrimaria}"/>
+                    
+                    <Button
+                        Clicked="Button_Clicked"
+                        Text="20%"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource TextoContraste}"
+                        WidthRequest="70"
+                        BackgroundColor="{StaticResource CorPrimaria}"/>
                 </HorizontalStackLayout>
-                
+
                 <Label
+                    x:Name="LblGorjeta"
+                    Text="Gorjeta: 0%"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
                     Grid.Row="2"
                     Grid.Column="0"/>
 
                 <Slider
+                    x:Name="SliderGorjeta"
+                    Maximum="50"
+                    Minimum="0"
+                    ThumbColor="{StaticResource CorPrimaria}"
+                    MinimumTrackColor="{StaticResource CorPrimaria}"
+                    ValueChanged="SliderGorjeta_ValueChanged"
                     Grid.Row="2"
                     Grid.Column="1"/>
 
                 <Label
+                    Text="Dividir por:"
                     Grid.Row="3"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
                     Grid.Column="0"/>
 
                 <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
                     Grid.Row="3"
                     Grid.Column="1">
-                    <Button/>
+
+                    <Button
+                        x:Name="BtnMenos"
+                        Text="-"
+                        WidthRequest="70"
+                        BackgroundColor="{StaticResource CorPrimaria}"
+                        FontSize="Large"/>
+
                     <Label
-                        Text="0"/>
-                    <Button/>
+                        x:Name="LblNumeroPessoas"
+                        Margin="-5,0,-5,0"
+                        FontSize="25"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        WidthRequest="100"
+                        BackgroundColor="#dcdcdc"
+                        Text="0"
+                        ZIndex="1"/>
+
+                    <Button
+                        x:Name="BtnMais"
+                        Text="+"
+                        WidthRequest="70"
+                        BackgroundColor="{StaticResource CorPrimaria}"
+                        FontSize="Large"/>
+
                 </HorizontalStackLayout>
                 
                 <Button
+                    x:Name="BtnReiniciar"
+                    BackgroundColor="{StaticResource CorDaPagina}"
                     Grid.Row="4"
-                    Grid.ColumnSpan="2"/>
+                    HeightRequest="100"
+                    FontSize="30"
+                    Text="Reiniciar"
+                    TextColor="{StaticResource CorPrimaria}"
+                    Grid.ColumnSpan="2"
+                    BorderWidth="4"
+                    BorderColor="{StaticResource CorPrimaria}"
+                    Clicked="BtnReiniciar_Clicked"/>
+                
             </Grid>
         </Grid>
     </ScrollView>
