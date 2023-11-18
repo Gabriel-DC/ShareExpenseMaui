@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShareExpenseMaui.MainPage">
+
+    <ScrollView>
+        <Grid RowDefinitions=".3*,.7*" Margin="15">
+
+            <Grid RowDefinitions=".1*, .9*" ColumnDefinitions="*,*">
+                <Label
+                    Text="Total por pessoa"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0"/>
+
+                <Label
+                    Text="R$ 0.00"
+                    FontSize="Large"
+                    TextColor="BlueViolet"
+                    Grid.Column="0"
+                    Grid.Row="1"/>
+
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="1">
+
+                    <Label/>
+                    <Label/>
+                    <Label/>
+                    <Label/>
+
+                </VerticalStackLayout>
+            </Grid>
+
+            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions=".3*, .7*">
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+
+                <Entry
+                    Grid.Row="0"
+                    Grid.Column="1"/>
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+
+                <HorizontalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="1">
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                </HorizontalStackLayout>
+                
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+
+                <Slider
+                    Grid.Row="2"
+                    Grid.Column="1"/>
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"/>
+
+                <HorizontalStackLayout
+                    Grid.Row="3"
+                    Grid.Column="1">
+                    <Button/>
+                    <Label
+                        Text="0"/>
+                    <Button/>
+                </HorizontalStackLayout>
+                
+                <Button
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"/>
+            </Grid>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
