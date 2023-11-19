@@ -25,7 +25,8 @@
                     Grid.Row="0"/>
 
                 <Label
-                    Text="R$ 150.00"
+                    x:Name="LblTotal"
+                    Text="$0.00"
                     FontSize="30"
                     FontAttributes="Bold"
                     HorizontalTextAlignment="Center"
@@ -46,7 +47,7 @@
 
                     <Label 
                         x:Name="LblSubtotal"
-                        Text="R$ 0.00"
+                        Text="$0.00"
                         FontSize="Medium"
                         TextColor="{StaticResource CorPrimaria}"
                         FontAttributes="Bold"/>
@@ -57,7 +58,7 @@
 
                     <Label 
                         x:Name="LblGorjetaPessoa"
-                        Text="R$ 0.00" 
+                        Text="$0.00" 
                         FontSize="Medium"
                         TextColor="{StaticResource CorPrimaria}"
                         FontAttributes="Bold"/>
@@ -174,7 +175,8 @@
                         Text="-"
                         WidthRequest="70"
                         BackgroundColor="{StaticResource CorPrimaria}"
-                        FontSize="Large"/>
+                        FontSize="Large"
+                        Clicked="BtnMenos_Clicked"/>
 
                     <Label
                         x:Name="LblNumeroPessoas"
@@ -188,7 +190,7 @@
                         VerticalTextAlignment="Center"
                         WidthRequest="100"
                         BackgroundColor="#dcdcdc"
-                        Text="0"
+                        Text="1"
                         ZIndex="1"/>
 
                     <Button
@@ -196,7 +198,8 @@
                         Text="+"
                         WidthRequest="70"
                         BackgroundColor="{StaticResource CorPrimaria}"
-                        FontSize="Large"/>
+                        FontSize="Large"
+                        Clicked="BtnMais_Clicked"/>
 
                 </HorizontalStackLayout>
                 
